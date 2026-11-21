@@ -1,0 +1,196 @@
+/* ===== Базовые настройки ===== */
+:root {
+    --color-bg: #f7f9fc;
+    --color-surface: #ffffff;
+    --color-text: #1f2933;
+    --color-muted: #52606d;
+    --color-primary: #1f4e8c;
+    --color-primary-light: #e8eef7;
+    --color-border: #d9e2ec;
+    --color-risk: #b42318;
+    --color-risk-bg: #fef3f2;
+    --color-solution: #067647;
+    --color-solution-bg: #ecfdf3;
+    --font-main: "Segoe UI", Arial, sans-serif;
+    --radius: 8px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-main);
+    font-size: 16px;
+    line-height: 1.55;
+}
+
+/* ===== Шапка и меню ===== */
+.site-header {
+    background: var(--color-primary);
+    color: #ffffff;
+    padding: 20px 24px 8px;
+}
+
+.site-title {
+    margin: 0 0 12px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 16px;
+    padding-bottom: 12px;
+}
+
+.site-nav a {
+    color: #dbe7f7;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 4px 0;
+    border-bottom: 2px solid transparent;
+}
+
+.site-nav a:hover {
+    color: #ffffff;
+    border-bottom-color: #ffffff;
+}
+
+/* ===== Основная часть ===== */
+.site-main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 32px 24px 48px;
+    background: var(--color-surface);
+}
+
+h2 {
+    font-size: 22px;
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-primary-light);
+    padding-bottom: 6px;
+    margin-top: 32px;
+}
+
+h3 {
+    font-size: 18px;
+    color: var(--color-text);
+    margin-top: 24px;
+}
+
+p, li {
+    color: var(--color-text);
+}
+
+/* ===== Таблицы ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    font-size: 15px;
+}
+
+th, td {
+    border: 1px solid var(--color-border);
+    padding: 8px 12px;
+    text-align: left;
+    vertical-align: top;
+}
+
+th {
+    background: var(--color-primary-light);
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+tr:nth-child(even) td {
+    background: #fbfcfe;
+}
+
+/* ===== Списки ===== */
+ul, ol {
+    padding-left: 22px;
+}
+
+li {
+    margin-bottom: 4px;
+}
+
+/* ===== Блоки «риск» и «решение» ===== */
+.risk,
+.solution {
+    border-left: 4px solid;
+    border-radius: var(--radius);
+    padding: 12px 16px;
+    margin: 16px 0;
+}
+
+.risk {
+    border-color: var(--color-risk);
+    background: var(--color-risk-bg);
+}
+
+.risk::before {
+    content: "Риск: ";
+    font-weight: 600;
+    color: var(--color-risk);
+}
+
+.solution {
+    border-color: var(--color-solution);
+    background: var(--color-solution-bg);
+}
+
+.solution::before {
+    content: "Решение: ";
+    font-weight: 600;
+    color: var(--color-solution);
+}
+
+/* ===== Карточки ===== */
+.card {
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    padding: 16px;
+    margin: 16px 0;
+    background: var(--color-surface);
+}
+
+.card h3 {
+    margin-top: 0;
+}
+
+/* ===== Цитаты и код ===== */
+blockquote {
+    margin: 16px 0;
+    padding: 12px 16px;
+    border-left: 4px solid var(--color-border);
+    background: var(--color-bg);
+    color: var(--color-muted);
+}
+
+code {
+    font-family: Consolas, "Courier New", monospace;
+    background: var(--color-bg);
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* ===== Подвал ===== */
+.site-footer {
+    background: var(--color-primary-light);
+    color: var(--color-muted);
+    text-align: center;
+    padding: 16px 24px;
+    font-size: 14px;
+}
+
+.site-footer p {
+    margin: 0;
+}
