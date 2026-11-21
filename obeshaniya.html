@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Обещания: SLA, OLA/UC, SLI/SLO, RPO/RTO — ЛК студента</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Личный кабинет студента вуза</h1>
+    <nav class="main-nav">
+      <a href="index.html">Система и условия</a>
+      <a href="zapusk.html">Запуск</a>
+      <a href="noch_zapuska.html">Ночь запуска</a>
+      <a href="posle_zapuska.html">После запуска</a>
+      <a href="obeshaniya.html" class="active">Обещания</a>
+      <a href="podderzhka.html">Поддержка</a>
+      <a href="status.html">Статус</a>
+      <a href="otrazhenie.html">Отражение</a>
+    </nav>
+  </header>
+
+  <main class="content">
+    <h2>Обещания: SLA, OLA/UC, SLI/SLO, RPO/RTO</h2>
+    <p class="lead">Страница фиксирует, что команда обещает пользователям и подрядчикам. Все цифры согласованы с планом ночи запуска (<a href="noch_zapuska.html">noch_zapuska.html</a>) и дежурствами (<a href="podderzhka.html">podderzhka.html</a>).</p>
+
+    <!-- 9. SLA -->
+    <section class="card">
+      <h3>9. SLA: что считаем недоступностью</h3>
+      <table class="table">
+        <thead>
+          <tr><th>Параметр</th><th>Значение</th><th>Пояснение</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Что считается недоступностью</td>
+            <td>ЛК не открывается или ключевые функции (расписание, оценки, подача заявления) не работают для ≥ 5 % активных пользователей</td>
+            <td>Единичные жалобы и ошибки на стороне браузера студента не считаются</td>
+          </tr>
+          <tr>
+            <td>Когда идёт измерение</td>
+            <td>Круглосуточно, 7 дней в неделю</td>
+            <td>Синтетические проверки каждые 5 минут с двух точек</td>
+          </tr>
+          <tr>
+            <td>Целевой процент</td>
+            <td><strong>99,5 % в месяц</strong></td>
+            <td>Не более 3 ч 36 мин простоя в месяц</td>
+          </tr>
+          <tr>
+            <td>Сколько это минут в месяц</td>
+            <td><strong>216 минут</strong> (30 дней × 24 ч × 60 мин × 0,5 %)</td>
+            <td>Бюджет ошибок на месяц</td>
+          </tr>
+          <tr>
+            <td>Исключения</td>
+            <td>Плановые работы в окне 02:00–05:00 (не более 4 ч в месяц), форс-мажор, аварии у хостинга вне зоны ответственности</td>
+            <td>Плановые работы объявляются не позднее чем за 72 ч</td>
+          </tr>
+          <tr>
+            <td>Штрафы</td>
+            <td>При недоступности &gt; 216 мин/мес — скидка 10 % за каждый час сверх лимита, максимум 30 % месячной стоимости</td>
+            <td>Фиксируется в акте с расчётом из <a href="otrazhenie.html">otrazhenie.html</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 10. OLA и UC -->
+    <section class="card">
+      <h3>10. OLA и UC: что требуем внутри и с подрядчиков</h3>
+      <table class="table">
+        <thead>
+          <tr><th>Документ</th><th>Сторона</th><th>Что требуем</th><th>Срок</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>OLA-1</td>
+            <td>Внутренняя команда эксплуатации</td>
+            <td>Реакция на критичный инцидент (ЛК недоступен)</td>
+            <td>≤ 15 мин, 24/7</td>
+          </tr>
+          <tr>
+            <td>OLA-2</td>
+            <td>Внутренняя команда разработки</td>
+            <td>Исправление дефекта, блокирующего расписание/оценки</td>
+            <td>≤ 4 ч в рабочее время</td>
+          </tr>
+          <tr>
+            <td>OLA-3</td>
+            <td>Служба поддержки студентов</td>
+            <td>Первый ответ на обращение</td>
+            <td>≤ 30 мин в пик, ≤ 2 ч ночью</td>
+          </tr>
+          <tr>
+            <td>UC-1</td>
+            <td>Хостинг-провайдер</td>
+            <td>Доступность виртуальных машин и сети</td>
+            <td>99,9 % в месяц, RTO ≤ 30 мин</td>
+          </tr>
+          <tr>
+            <td>UC-2</td>
+            <td>Подрядчик SMS-уведомлений</td>
+            <td>Доставка SMS об оценках и заявлениях</td>
+            <td>95 % за 5 мин, 99 % за 30 мин</td>
+          </tr>
+          <tr>
+            <td>UC-3</td>
+            <td>Подрядчик интеграции с деканатом (1С/БАРС)</td>
+            <td>Синхронизация оценок и заявлений</td>
+            <td>Задержка ≤ 15 мин, окно 07:00–23:00</td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="note">SLA 99,5 % выполнимо только если все OLA и UC выполняются: худший из подрядчиков (UC-1, 99,9 %) не съедает бюджет ошибок ЛК.</p>
+    </section>
+
+    <!-- 11. SLI и SLO -->
+    <section class="card">
+      <h3>11. SLI и SLO: 3 показателя с целевыми значениями</h3>
+      <table class="table">
+        <thead>
+          <tr><th>SLI (что измеряем)</th><th>SLO (цель)</th><th>Где измеряем</th><th>Связь с SLA</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Доступность ЛК: доля успешных ответов на ключевые страницы</td>
+            <td><strong>≥ 99,5 %</strong> за месяц</td>
+            <td>Синтетические проверки + логи балансировщика</td>
+            <td>Напрямую формирует SLA</td>
+          </tr>
+          <tr>
+            <td>Скорость отдачи расписания: 95-й перцентиль времени ответа</td>
+            <td><strong>≤ 1,5 с</strong></td>
+            <td>APM-мониторинг, выборка по дням пик</td>
+            <td>Входит в понятие «функция не работает» при &gt; 5 с</td>
+          </tr>
+          <tr>
+            <td>Успешность подачи заявления: доля заявлений, дошедших до деканата</td>
+            <td><strong>≥ 99,0 %</strong> за сутки</td>
+            <td>Сверка ЛК с системой деканата</td>
+            <td>Ошибки сверх 1 % — инцидент, влияющий на SLA</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 12. RPO и RTO -->
+    <section class="card">
+      <h3>12. RPO и RTO: значения и чем обеспечены</h3>
+      <table class="table">
+        <thead>
+          <tr><th>Параметр</th><th>Значение</th><th>Чем обеспечено</th><th>Проверка</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>RPO</strong> (сколько данных можем потерять)</td>
+            <td><strong>≤ 15 минут</strong></td>
+            <td>Непрерывная репликация БД в другую зону + WAL-архив каждые 5 мин</td>
+            <td>Ежемесячный тест восстановления из WAL</td>
+          </tr>
+          <tr>
+            <td><strong>RTO</strong> (сколько восстанавливаемся)</td>
+            <td><strong>≤ 60 минут</strong></td>
+            <td>Горячая реплика, автоматический failover, runbook в <a href="noch_zapuska.html">noch_zapuska.html</a></td>
+            <td>Квартальные учения, в т.ч. ночью</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="risk">
+        <strong>Риск:</strong> RTO 60 мин должен быть не меньше времени отката из плана ночи. Если откат в <a href="noch_zapuska.html">noch_zapuska.html</a> занимает 45 мин, то 60 мин RTO оставляет 15 мин запаса — это согласовано.
+      </div>
+      <div class="solution">
+        <strong>Решение:</strong> при миграции оценок и заявлений RPO ужесточаем до 5 мин на период окна запуска (см. <a href="noch_zapuska.html">noch_zapuska.html</a>), после стабилизации возвращаем 15 мин.
+      </div>
+    </section>
+
+    <p class="note">Все цифры этой страницы используются в расчёте на <a href="otrazhenie.html">otrazhenie.html</a> и в дежурствах на <a href="podderzhka.html">podderzhka.html</a>.</p>
+  </main>
+
+  <footer class="site-footer">
+    <p>Участник 3 · <a href="otrazhenie.html">Отражение атак и расчёт SLA</a></p>
+  </footer>
+</body>
+</html>

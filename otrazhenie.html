@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Отражение атак и расчёт SLA за месяц — ЛК студента</title>
+  <link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <h1>Личный кабинет студента вуза</h1>
+    <nav class="main-nav">
+      <a href="index.html">Система и условия</a>
+      <a href="zapusk.html">Запуск</a>
+      <a href="noch_zapuska.html">Ночь запуска</a>
+      <a href="posle_zapuska.html">После запуска</a>
+      <a href="obeshaniya.html">Обещания</a>
+      <a href="podderzhka.html">Поддержка</a>
+      <a href="status.html">Статус</a>
+      <a href="otrazhenie.html" class="active">Отражение</a>
+    </nav>
+  </header>
+
+  <main class="content">
+    <h2>Отражение атак и расчёт SLA за месяц</h2>
+    <p class="lead">Страница собирает все происшествия, назначенные команде в issues, и считает итоговый SLA по базе измерения со страницы <a href="obeshaniya.html">obeshaniya.html</a>.</p>
+
+    <!-- 3.1 Ответы на происшествия -->
+    <section class="card">
+      <h3>Ответы на происшествия (этап 3.1)</h3>
+
+      <article class="incident">
+        <h4>Происшествие №1 — «Отказ подрядчика SMS в день объявления оценок»</h4>
+        <p><strong>Дата/время:</strong> 15 октября, 09:10–11:40 (150 мин). <strong>Что видят пользователи:</strong> оценки в ЛК есть, но SMS не приходят; студенты звонят в деканат.</p>
+        <table class="table">
+          <tbody>
+            <tr><td>Приоритет</td><td>P2 (функция недоступна, но ЛК работает)</td></tr>
+            <tr><td>Кто реагирует и через сколько</td><td>Дежурный эксплуатации — 15 мин (OLA-1); поддержка студентов — 30 мин (OLA-3)</td></tr>
+            <tr><td>Первое сообщение пользователям (до 5 строк)</td><td>«Уважаемые студенты! SMS-уведомления об оценках временно не доставляются. Оценки доступны в личном кабинете. Восстанавливаем, ориентировочно до 12:00. Приносим извинения».</td></tr>
+            <tr><td>Откат или ремонт и почему</td><td><strong>Ремонт:</strong> переключение на резервного SMS-провайдера по runbook; откат не нужен — данные не терялись. Ссылка: <a href="podderzhka.html">podderzhka.html</a>, матрица приоритетов P2.</td></tr>
+            <tr><td>Нарушен ли UC</td><td><strong>Да.</strong> UC-2 (95 % за 5 мин) не выполнен; фиксируем для штрафа подрядчику.</td></tr>
+          </tbody>
+        </table>
+      </article>
+
+      <article class="incident">
+        <h4>Происшествие №2 — «Плановые работы объявлены позже срока»</h4>
+        <p><strong>Дата/время:</strong> 22 октября, 02:00–04:30 (150 мин). <strong>Что видят пользователи:</strong> ЛК недоступен ночью; часть студентов не успела подать заявление до дедлайна.</p>
+        <table class="table">
+          <tbody>
+            <tr><td>Приоритет</td><td>P3 (плановые работы), но нарушено правило объявления за 72 ч</td></tr>
+            <tr><td>Кто реагирует и через сколько</td><td>Дежурный эксплуатации — немедленно; коммуникации — по <a href="posle_zapuska.html">posle_zapuska.html</a></td></tr>
+            <tr><td>Первое сообщение пользователям</td><td>«ЛК недоступен с 02:00 до 04:30 из-за плановых работ. Приносим извинения за позднее уведомление. Дедлайн заявлений продлён до 12:00».</td></tr>
+            <tr><td>Откат или ремонт</td><td><strong>Ремонт:</strong> работы завершены; откат не требуется. Правило 72 ч нарушено — работы <strong>не считаются исключением</strong> и входят в простой.</td></tr>
+            <tr><td>Нарушен ли UC</td><td>UC-1 не нарушен (хостинг работал); нарушено внутреннее правило SLA об исключениях.</td></tr>
+          </tbody>
+        </table>
+      </article>
+    </section>
+
+    <!-- 3.4 Расчёт SLA -->
+    <section class="card">
+      <h3>3.4. Итоговый расчёт SLA за месяц (октябрь)</h3>
+      <table class="table">
+        <thead>
+          <tr><th>Параметр</th><th>Значение</th><th>Откуда взято</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>База измерения</td>
+            <td>30 дней × 24 ч × 60 мин = <strong>43 200 мин</strong></td>
+            <td><a href="obeshaniya.html">obeshaniya.html</a>, SLA: круглосуточно 7 дней в неделю</td>
+          </tr>
+          <tr>
+            <td>Бюджет ошибок (0,5 %)</td>
+            <td><strong>216 мин</strong></td>
+            <td><a href="obeshaniya.html">obeshaniya.html</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="table">
+        <thead>
+          <tr><th>Происшествие</th><th>Минуты простоя</th><th>Входит в SLA?</th><th>Объяснение и ссылка</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>№1. Отказ SMS-подрядчика</td>
+            <td><strong>150</strong></td>
+            <td>Да, частично: ЛК работал, но функция уведомлений — часть обещания</td>
+            <td>Считаем 150 мин как недоступность функции уведомлений; issue #[номер]. UC-2 нарушен.</td>
+          </tr>
+          <tr>
+            <td>№2. Плановые работы с поздним объявлением</td>
+            <td><strong>150</strong></td>
+            <td>Да: исключение не действует, т.к. объявлено позже 72 ч</td>
+            <td>Правило исключений из <a href="obeshaniya.html">obeshaniya.html</a>; issue #[номер].</td>
+          </tr>
+          <tr>
+            <td><strong>Итого простоя</strong></td>
+            <td><strong>300 мин</strong></td>
+            <td>—</td>
+            <td>Сумма по журналу <a href="status.html">status.html</a></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="table">
+        <thead>
+          <tr><th>Итог</th><th>Расчёт</th><th>Значение</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Доступность за месяц</td>
+            <td>(43 200 − 300) / 43 200 × 100 %</td>
+            <td><strong>99,31 %</strong></td>
+          </tr>
+          <tr>
+            <td>SLA выполнен?</td>
+            <td>99,31 % &lt; 99,5 %</td>
+            <td><strong>Нет, нарушен</strong></td>
+          </tr>
+          <tr>
+            <td>Превышение бюджета ошибок</td>
+            <td>300 − 216 = 84 мин</td>
+            <td><strong>84 мин сверх лимита</strong></td>
+          </tr>
+          <tr>
+            <td>Штраф</td>
+            <td>84 мин ≈ 1,4 ч → 1 полный час сверх лимита × 10 %</td>
+            <td><strong>10 % скидки</strong> (округление в пользу заказчика — 1 час)</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="risk">
+        <strong>Риск:</strong> если считать происшествие №1 только как «SMS», а не как часть SLA, доступность была бы 99,65 % и SLA выполнен. Мы сознательно включаем уведомления в SLA, т.к. <a href="obeshaniya.html">obeshaniya.html</a> обещает SMS об оценках и заявлениях (UC-2).
+      </div>
+      <div class="solution">
+        <strong>Решение:</strong> ужесточить OLA-3 (поддержка) до 15 мин в пик и добавить мониторинг SMS-доставки на <a href="podderzhka.html">podderzhka.html</a>; плановые работы — только с подтверждением объявления за 72 ч.
+      </div>
+
+      <h4>Нарушен ли UC подрядчика</h4>
+      <table class="table">
+        <thead>
+          <tr><th>UC</th><th>Цель</th><th>Факт</th><th>Вывод</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>UC-1 (хостинг)</td><td>99,9 %, RTO ≤ 30 мин</td><td>Нарушений нет</td><td>Выполнен</td></tr>
+          <tr><td>UC-2 (SMS)</td><td>95 % за 5 мин</td><td>150 мин недоставки</td><td><strong>Нарушен</strong> — штраф подрядчику</td></tr>
+          <tr><td>UC-3 (деканат)</td><td>Задержка ≤ 15 мин</td><td>Нарушений нет</td><td>Выполнен</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- Сводка по находкам -->
+    <section class="card">
+      <h3>Что исправлено по находкам (этап 3.2)</h3>
+      <ul class="list">
+        <li><strong>Находка «SLA не покрывает SMS»</strong> — исправлено в <a href="obeshaniya.html">obeshaniya.html</a>: SMS включены в понятие недоступности функции; MR «Closes #N».</li>
+        <li><strong>Находка «RTO меньше времени отката»</strong> — согласовано с <a href="noch_zapuska.html">noch_zapuska.html</a>: RTO 60 мин &gt; откат 45 мин; страница обновлена.</li>
+        <li><strong>Находка «исключение для плановых работ без срока объявления»</strong> — добавлено правило 72 ч; MR «Closes #N».</li>
+      </ul>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Участник 3 · Расчёт SLA согласован с <a href="obeshaniya.html">obeshaniya.html</a> и <a href="status.html">status.html</a></p>
+  </footer>
+</body>
+</html>
